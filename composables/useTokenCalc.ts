@@ -28,7 +28,7 @@ export function useTokenCalc() {
     return pricingUnitOptions.find(u => u.value === pricingUnit.value)?.divisor ?? 1_000_000
   })
 
-  const inputCost = computed(() => (inputTokens.value * inputUnitPrice.value) / divisor.value)
+  const inputCost = computed(() => ((inputTokens.value - cacheTokens.value) * inputUnitPrice.value) / divisor.value)
   const cacheCost = computed(() => (cacheTokens.value * cacheUnitPrice.value) / divisor.value)
   const outputCost = computed(() => (outputTokens.value * outputUnitPrice.value) / divisor.value)
   const totalCost = computed(() => inputCost.value + cacheCost.value + outputCost.value)
